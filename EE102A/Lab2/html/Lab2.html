@@ -1,0 +1,442 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab2</title><meta name="generator" content="MATLAB 7.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-01-22"><meta name="DC.source" content="Lab2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><p>Javier Palomares <a href="mailto:javierp@stanford.edu">javierp@stanford.edu</a> EE102A 01/23/2013</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Task 1</a></li><li><a href="#2">Task 2</a></li><li><a href="#3">Task 3</a></li><li><a href="#4">Task 4</a></li><li><a href="#5">System 1</a></li><li><a href="#6">System 2</a></li></ul></div><h2>Task 1<a name="1"></a></h2><pre class="codeinput">numSteps = 500;
+startTime = 0;
+endTime = 10;
+dt = (endTime - startTime) / numSteps;
+t = startTime : dt : endTime;
+<span class="comment">% We want a period T = 2</span>
+<span class="comment">% then the frequency w = 2pi / T</span>
+T = 2;
+w = 2 * pi / T;
+<span class="comment">% We want a decay rate that halves the amplitude after 10 seconds</span>
+<span class="comment">% Then 1/2 =  e ^ sigma (10)</span>
+<span class="comment">% so sigma - log(1/2)/10 = - log(2)/10</span>
+sigma = - log(2)/10;
+<span class="comment">% Then f = e^(sigma + i * w) * t assuming the phase angle is zero and</span>
+<span class="comment">% an initial amplitude of 1</span>
+f = exp((sigma + i * w ) .* t);
+plot(f)
+<span class="comment">% Matlab is plotting f on the complex plane- real part on the x axis,</span>
+<span class="comment">% imaginary part on the y-axis</span>
+</pre><h2>Task 2<a name="2"></a></h2><pre class="codeinput">plot(t,real(f),t,imag(f));
+xlabel(<span class="string">'Time (sec)'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Decaying complex sinusoidal'</span>);
+legend(<span class="string">'Real'</span>,<span class="string">'Imaginary'</span>)
+<span class="comment">% From the plot we see that the sinusoids oscillate every two seconds and</span>
+<span class="comment">% after 10 seconds their amplitude is halved.</span>
+</pre><h2>Task 3<a name="3"></a></h2><pre class="codeinput">plot(t,abs(f),t,angle(f)./(2 * pi));
+legend(<span class="string">'Absolute value'</span>,<span class="string">'Angle'</span>);
+xlabel(<span class="string">'time'</span>)
+<span class="comment">% We see that the amplitude is decaying exponentially and the angle cycles</span>
+<span class="comment">% between -pi and pi</span>
+</pre><h2>Task 4<a name="4"></a></h2><pre class="codeinput">dt = .001;
+t = 0: dt : 1;
+x0 = zeros(size(t));
+xi = [1 zeros(1,length(t) - 1)];
+xid = [zeros(1,100) xi(1:901)];
+xcos4 = cos(2 * pi * 4 * t);
+xc = .5 * ones(size(t));
+</pre><h2>System 1<a name="5"></a></h2><pre class="codeinput">y = blackbox(xcos4,1);
+yn = blackbox(-1*xcos4,1);
+plot(t,y,t,yn)
+<span class="comment">% System 1 is time-invariant, causal,stable</span>
+</pre><h2>System 2<a name="6"></a></h2><pre class="codeinput">y = blackbox(xcos4,2);
+yn = blackbox(-1*xcos4,2);
+plot(t,y,t,yn)
+plot(t,y,t,blackbox(xcos4,2))
+plot(t,y,t,blackbox(4 *xcos4,2))
+plot(t,y,t,blackbox(-4 *xcos4,2))
+
+
+
+
+y = blackbox(xcos4,1);
+plot(y,t)
+plot(t,y)
+plot(t,blackbox(x0))
+plot(t,blackbox(x0,1))
+plot(t,blackbox(xi,1))
+plot(t,blackbox(xid,1))
+plot(t,blackbox(xcos4,1))
+figure
+plot(t,blackbox(2*xcos4,1))
+plot(t,blackbox(4*xcos4,1))
+plot(t,blackbox(xc,1))
+plot(t,blackbox(2*xc,1))
+plot(t,blackbox(-xc,1))
+clc
+y = blackbox(xcos4,1);
+yn = blackbox(-1*xcos4,1);
+plot(t,y,t,yn)
+y = blackbox(xcos4,2);
+yn = blackbox(-1*xcos4,2);
+plot(t,y,t,yn)
+plot(t,y,t,blackbox(xcos4,2))
+plot(t,y,t,blackbox(4 *xcos4,2))
+plot(t,y,t,blackbox(-4 *xcos4,2))
+y = blackbox(xi,2);
+yd = blackbox(xid,2);
+plot(t,y,t,yd)
+<span class="comment">% Impulse comes out at .3 when the delay was at .1. Not time invariant</span>
+<span class="comment">% Step</span>
+xs = [zeros(1,100) ones(1,901)]
+ys = blackbox(xs,2);
+plot(t,ys)
+plot(t,xs,t,ys)
+y = blackbox(xcos4,2);
+plot(t,y)
+plot(t,y,t,xcos4)
+legend(<span class="string">'output'</span>,<span class="string">'input'</span>)
+plot(t,blackbox(xcos4,3),t,blackbox(2*xcos4,3))
+plot(t,blackbox(xcos4,3),t,blackbox(-1*xcos4,3))
+plot(t,blackbox(xcos4,3) + blackbox(-1*xcos4,3))
+<span class="comment">% System 3 appears to be linear</span>
+plot(t,blackbox(xi,3),t,blackbox(xid,3))
+<span class="comment">% We see a time delay in the output that's the same as in the input</span>
+plot(t,blackbox(xs,3))
+plot(t,blackbox(xs,3),t,xs)
+<span class="comment">% System appears to be causal</span>
+plot(t,blackbox(x0,3))
+plot(t,blackbox(xc,3))
+yscale(-2,2)
+xd = [zeros(1,200) xi(1:800)];
+plot(t,blackbox(xd,3),t,xd);
+xd = [zeros(1,200) xi(1:801)];
+plot(t,blackbox(xd,3),t,xd)
+plot(t,blackbox(xd,3),t,xd,t,xid,t,blackbox(xid,t))
+plot(t,blackbox(xd,3), t, xd, t, xid, t, blackbox(xid,t))
+plot(t,blackbox(xd,3), t, xd)
+plot(t,blackbox(xcos4,3))
+plot(t,blackbox(xc,3))
+<span class="comment">% this looks like it's multiplying by a squarewell</span>
+y = blackbox(xc,3);
+plot(t,blackbox(xcos4,t),t,xcos4*t)
+plot(t,blackbox(xcos4,t), t, (xcos4*t) )
+plot(t, blackbox(xcos4,3), t, (xcos4*t) )
+plot(t, blackbox(xcos4,3), t, (xcos4.*y) )
+<span class="comment">% Yup, it's multiplying a by a square wave. Then it's invertible and memoryless</span>
+<span class="comment">% Four</span>
+plot(t,blackbox(xcos4,4), t)
+plot(t,blackbox(xcos4,4),t,xcos4)
+<span class="comment">%Output is a sine, input a cos</span>
+plot(t,blackbox(xc,4),t,xc)
+<span class="comment">% Output is linear, input is constant</span>
+plot(t,blackbox(xc,4),t,blackbox(-xc,4))
+<span class="comment">% Negative sign flipped</span>
+plot(t,blackbox(xc,4),t,blackbox(4 *xc,4))
+<span class="comment">% Appears to be linear</span>
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+plot(t,blackbox(xi,4))
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+plot(t,blackbox(xi,4))
+figure
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+<span class="comment">% It appears to be time invariant</span>
+<span class="comment">% The output also appears to be the integral of the input up to a constant</span>
+plot(t,blackbox(xi,4),t,blackbox(x0,4))
+plot(t,blackbox(xi,4)
+plot(t,blackbox(xi,4))
+plot(t,blackbox(x0,4))
+<span class="comment">% Both the impulse function and the zero give out the same input</span>
+plot(t,blackbox(xc,4))
+<span class="comment">% Output is not bounded, so the system is not stable</span>
+<span class="comment">% System 5</span>
+plot(t,blackbox(xcos4,5),t,blackbox(-1 * xcos4,5))
+<span class="comment">% Different input, same output, not linear, not invertible</span>
+plot(t,blackbox(xi,5),t,blackbox(xid,5))
+<span class="comment">% We still get the same output,</span>
+<span class="comment">% Not time invariant either</span>
+plot(t,blackbox(x0,5),t,blackbox(xs,5))
+<span class="comment">% Not causal</span>
+plot(t,blackbox(xcos4,6),t,blackbox(-1 * xcos4,5))
+<span class="comment">% Not linear</span>
+plot(t,blackbox(xcos4,6),t,blackbox(-1 * xcos4,6))
+<span class="comment">% ^^^ Error above, was comparing system 6 and 5</span>
+plot(t,blackbox(xcos4,6),t,blackbox(4 * xcos4,6))
+plot(t,blackbox(xcos4,6),t,blackbox(10 * xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(-xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(xc,6),t,blackbox(xc,t),t,blackbox(xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(xc,6),t,blackbox(xc,6),t,blackbox(xcos4,6))
+plot(t,blackbox(xi,6),t,blackbox(xid,6))
+<span class="comment">% Not time invariant</span>
+plot(t,blackbox(xcos4 + xc,6),t,blackbox(xc,6),t,blackbox(xcos4,6))
+legend(<span class="string">'sum'</span>,<span class="string">'const'</span>,<span class="string">'cos'</span>)
+<span class="comment">% The system is linear</span>
+plot(t,blackbox(xi,6),t,blackbox(xid,6))
+<span class="comment">% Not causal either, impulse at later time cause output time at earlier time</span>
+plot(t,blackbox(xcos4,7),t,blackbox(-xcos4,7))
+<span class="comment">% Negative sign flips</span>
+plot(t,blackbox(xcos4,7),t,blackbox(6 * xcos4,7))
+plot(t,blackbox(xcos4,7),t,blackbox(2 * xcos4,7))
+<span class="comment">% Systme is not linear</span>
+<span class="comment">% System freaks out whenever the input goes above one</span>
+plot(t,blackbox(xi,7),t,blackbox(xid,7))
+plot(t,blackbox(4 * xi,7),t,blackbox(4 * xid,7))
+<span class="comment">% System in time invariant</span>
+<span class="comment">% It's also causal, we saw the later impulse show up later in the output</span>
+<span class="comment">% The system is not stable either, It goes to a very high amplitude for any input</span>
+<span class="comment">% above 1</span>
+plot(t,blackbox(xc,7))
+<span class="comment">% System returns same output as input when it doesn't go above 1</span>
+plot(t,blackbox(10*xc,7),t,blackbox(2*xc,7))
+<span class="comment">% Different input, same output, not invertible</span>
+</pre><p class="footer"><br>
+      Published with MATLAB&reg; 7.14<br></p></div><!--
+##### SOURCE BEGIN #####
+%%
+% Javier Palomares javierp@stanford.edu
+% EE102A 01/23/2013
+
+%% Task 1
+numSteps = 500;
+startTime = 0;
+endTime = 10;
+dt = (endTime - startTime) / numSteps;
+t = startTime : dt : endTime;
+% We want a period T = 2
+% then the frequency w = 2pi / T
+T = 2;
+w = 2 * pi / T;
+% We want a decay rate that halves the amplitude after 10 seconds
+% Then 1/2 =  e ^ sigma (10)
+% so sigma - log(1/2)/10 = - log(2)/10
+sigma = - log(2)/10;
+% Then f = e^(sigma + i * w) * t assuming the phase angle is zero and 
+% an initial amplitude of 1
+f = exp((sigma + i * w ) .* t);
+plot(f)
+% Matlab is plotting f on the complex plane- real part on the x axis,
+% imaginary part on the y-axis
+
+%% Task 2
+plot(t,real(f),t,imag(f));
+xlabel('Time (sec)');
+ylabel('Amplitude');
+title('Decaying complex sinusoidal');
+legend('Real','Imaginary')
+% From the plot we see that the sinusoids oscillate every two seconds and
+% after 10 seconds their amplitude is halved.
+
+%% Task 3
+plot(t,abs(f),t,angle(f)./(2 * pi));
+legend('Absolute value','Angle');
+xlabel('time')
+% We see that the amplitude is decaying exponentially and the angle cycles
+% between -pi and pi
+
+%% Task 4
+dt = .001;
+t = 0: dt : 1;
+x0 = zeros(size(t));
+xi = [1 zeros(1,length(t) - 1)];
+xid = [zeros(1,100) xi(1:901)];
+xcos4 = cos(2 * pi * 4 * t);
+xc = .5 * ones(size(t));
+%% System 1
+y = blackbox(xcos4,1);
+yn = blackbox(-1*xcos4,1);
+plot(t,y,t,yn)
+% System 1 is time-invariant, causal,stable
+%% System 2
+
+y = blackbox(xcos4,2);
+yn = blackbox(-1*xcos4,2);
+plot(t,y,t,yn)
+plot(t,y,t,blackbox(xcos4,2))
+plot(t,y,t,blackbox(4 *xcos4,2))
+plot(t,y,t,blackbox(-4 *xcos4,2))
+
+
+
+
+y = blackbox(xcos4,1);
+plot(y,t)
+plot(t,y)
+plot(t,blackbox(x0))
+plot(t,blackbox(x0,1))
+plot(t,blackbox(xi,1))
+plot(t,blackbox(xid,1))
+plot(t,blackbox(xcos4,1))
+figure
+plot(t,blackbox(2*xcos4,1))
+plot(t,blackbox(4*xcos4,1))
+plot(t,blackbox(xc,1))
+plot(t,blackbox(2*xc,1))
+plot(t,blackbox(-xc,1))
+clc
+y = blackbox(xcos4,1);
+yn = blackbox(-1*xcos4,1);
+plot(t,y,t,yn)
+y = blackbox(xcos4,2);
+yn = blackbox(-1*xcos4,2);
+plot(t,y,t,yn)
+plot(t,y,t,blackbox(xcos4,2))
+plot(t,y,t,blackbox(4 *xcos4,2))
+plot(t,y,t,blackbox(-4 *xcos4,2))
+y = blackbox(xi,2);
+yd = blackbox(xid,2);
+plot(t,y,t,yd)
+% Impulse comes out at .3 when the delay was at .1. Not time invariant
+% Step
+xs = [zeros(1,100) ones(1,901)]
+ys = blackbox(xs,2);
+plot(t,ys)
+plot(t,xs,t,ys)
+y = blackbox(xcos4,2);
+plot(t,y)
+plot(t,y,t,xcos4)
+legend('output','input')
+plot(t,blackbox(xcos4,3),t,blackbox(2*xcos4,3))
+plot(t,blackbox(xcos4,3),t,blackbox(-1*xcos4,3))
+plot(t,blackbox(xcos4,3) + blackbox(-1*xcos4,3))
+% System 3 appears to be linear
+plot(t,blackbox(xi,3),t,blackbox(xid,3))
+% We see a time delay in the output that's the same as in the input
+plot(t,blackbox(xs,3))
+plot(t,blackbox(xs,3),t,xs)
+% System appears to be causal
+plot(t,blackbox(x0,3))
+plot(t,blackbox(xc,3))
+yscale(-2,2)
+xd = [zeros(1,200) xi(1:800)];
+plot(t,blackbox(xd,3),t,xd);
+xd = [zeros(1,200) xi(1:801)];
+plot(t,blackbox(xd,3),t,xd)
+plot(t,blackbox(xd,3),t,xd,t,xid,t,blackbox(xid,t))
+plot(t,blackbox(xd,3), t, xd, t, xid, t, blackbox(xid,t))
+plot(t,blackbox(xd,3), t, xd)
+plot(t,blackbox(xcos4,3))
+plot(t,blackbox(xc,3))
+% this looks like it's multiplying by a squarewell
+y = blackbox(xc,3);
+plot(t,blackbox(xcos4,t),t,xcos4*t)
+plot(t,blackbox(xcos4,t), t, (xcos4*t) )
+plot(t, blackbox(xcos4,3), t, (xcos4*t) )
+plot(t, blackbox(xcos4,3), t, (xcos4.*y) )
+% Yup, it's multiplying a by a square wave. Then it's invertible and memoryless
+% Four
+plot(t,blackbox(xcos4,4), t)
+plot(t,blackbox(xcos4,4),t,xcos4)
+%Output is a sine, input a cos
+plot(t,blackbox(xc,4),t,xc)
+% Output is linear, input is constant
+plot(t,blackbox(xc,4),t,blackbox(-xc,4))
+% Negative sign flipped
+plot(t,blackbox(xc,4),t,blackbox(4 *xc,4))
+% Appears to be linear
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+plot(t,blackbox(xi,4))
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+plot(t,blackbox(xi,4))
+figure
+plot(t,blackbox(xi,4),t,blackbox(xid,4))
+% It appears to be time invariant
+% The output also appears to be the integral of the input up to a constant
+plot(t,blackbox(xi,4),t,blackbox(x0,4))
+plot(t,blackbox(xi,4)
+plot(t,blackbox(xi,4))
+plot(t,blackbox(x0,4))
+% Both the impulse function and the zero give out the same input
+plot(t,blackbox(xc,4))
+% Output is not bounded, so the system is not stable
+% System 5
+plot(t,blackbox(xcos4,5),t,blackbox(-1 * xcos4,5))
+% Different input, same output, not linear, not invertible
+plot(t,blackbox(xi,5),t,blackbox(xid,5))
+% We still get the same output,
+% Not time invariant either
+plot(t,blackbox(x0,5),t,blackbox(xs,5))
+% Not causal
+plot(t,blackbox(xcos4,6),t,blackbox(-1 * xcos4,5))
+% Not linear
+plot(t,blackbox(xcos4,6),t,blackbox(-1 * xcos4,6))
+% ^^^ Error above, was comparing system 6 and 5
+plot(t,blackbox(xcos4,6),t,blackbox(4 * xcos4,6))
+plot(t,blackbox(xcos4,6),t,blackbox(10 * xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(-xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(xc,6),t,blackbox(xc,t),t,blackbox(xcos4,6))
+plot(t,blackbox(xcos4,6) + blackbox(xc,6),t,blackbox(xc,6),t,blackbox(xcos4,6))
+plot(t,blackbox(xi,6),t,blackbox(xid,6))
+% Not time invariant
+plot(t,blackbox(xcos4 + xc,6),t,blackbox(xc,6),t,blackbox(xcos4,6))
+legend('sum','const','cos')
+% The system is linear
+plot(t,blackbox(xi,6),t,blackbox(xid,6))
+% Not causal either, impulse at later time cause output time at earlier time
+plot(t,blackbox(xcos4,7),t,blackbox(-xcos4,7))
+% Negative sign flips
+plot(t,blackbox(xcos4,7),t,blackbox(6 * xcos4,7))
+plot(t,blackbox(xcos4,7),t,blackbox(2 * xcos4,7))
+% Systme is not linear
+% System freaks out whenever the input goes above one
+plot(t,blackbox(xi,7),t,blackbox(xid,7))
+plot(t,blackbox(4 * xi,7),t,blackbox(4 * xid,7))
+% System in time invariant
+% It's also causal, we saw the later impulse show up later in the output
+% The system is not stable either, It goes to a very high amplitude for any input
+% above 1
+plot(t,blackbox(xc,7))
+% System returns same output as input when it doesn't go above 1
+plot(t,blackbox(10*xc,7),t,blackbox(2*xc,7))
+% Different input, same output, not invertible
+
+
+##### SOURCE END #####
+--></body></html>

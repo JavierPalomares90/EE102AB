@@ -1,0 +1,10 @@
+t=0:.1:10;
+w= exp(-t);
+x = t .* w;
+y = w + x;
+plot(t,w)
+grid on
+xlabel('t (sec)');
+ylabel('Sample waveform w vs. time');
+title('Sample Waveform vs. time');
+diary off

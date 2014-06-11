@@ -1,0 +1,11 @@
+% Javier Palomares javierp@stanford.edu 01/16/2013
+% SUID 05572308
+
+% Matlab plotting basics
+t = 0:.1:10;
+w = exp(-t);
+x = t.*exp(-t);
+y = exp(-t) + t.*exp(-t);
+plot(t,w)
+print(figure,'lab1task1.txt')
+

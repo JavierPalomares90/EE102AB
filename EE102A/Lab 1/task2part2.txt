@@ -1,0 +1,56 @@
+t =[1:length(d)] * dt;
+plot(t(1:8:end),d(1:8:end));
+xlabel('Time,s');
+ylabel('Amplitude');
+Title('Guitar note');
+{Cannot find an exact (case-sensitive) match for 'Title'
+
+The closest match is: title
+in /Applications/Matlab_r2012a/MATLAB_R2012a.app/toolbox/matlab/graph2d/title.m
+
+} 
+title('Guitar note');
+print(figure(1),'guitarnote')
+subplot(211)
+plot(t,d)
+xlabel('Time,s')
+ylabel('Amplitude')
+print(figure(1),'guitarnote_full')
+ls = length(d)
+
+ls =
+
+       44100
+
+ns = round(.45/dt)
+
+ns =
+
+        3969
+
+% The sound starts at around .45 seconds
+
+% at t = .45 the absolute peak is .98 and at t = 2.25 the amplitude drops to .15
+% Then we have an system of equations to solve:
+% .98 = a * exp(sigma * .45)
+% and .15 = a * exp(sigma * 2.25)
+% this allows us to solve for sigma and a
+sigma = log(.15/.98)/(2.25 - .45);
+a = .98 /exp(.45 * sigma);
+% Then the delay waveform is
+de = [zeros(1,ns) a * exp(sigma * t(ns + 1 : ld))];
+{Undefined function or variable 'ld'.
+} 
+ld = ls;
+de = [zeros(1,ns) a * exp(sigma * t(ns + 1 : ld))];
+subplot(211)
+plot(t,abs(d),t,de);
+xlablel('Time (s)');
+{Undefined function 'xlablel' for input arguments of type 'char'.
+} 
+xlabel('Time (s)');
+ylabel('Time (s)');
+ylabel('');
+ylabel('Amplitude');
+print(figure(1),'Delayed_waveform_guitar')
+diary off

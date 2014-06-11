@@ -1,0 +1,19 @@
+t = 0:.001:1;
+A = 3;
+B = 4;
+x = cos(2 * pi * A .* t);
+y = sin(2 * pi * B .* t);
+plot(x,y);
+title('Lissajous curve with A = 3, B = 4');
+print(figure(1),'lissajouscurve');
+
+A = 19;
+B = 20;
+x = cos(2 * pi * A .* t);
+y = sin(2 * pi * B .* t);
+xlabel('t');
+ylabel('x and y');
+title('Lissajous curve with A = 19, B = 20');
+print(figure(1),'lissajouscurve2');
+
+%Task 2

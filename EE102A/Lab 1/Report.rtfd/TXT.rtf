@@ -1,0 +1,196 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+\cocoascreenfonts1{\fonttbl\f0\fnil\fcharset0 Georgia;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11904\paperh16836\margl1011\margr1011\margb1445\margt1008\vieww14000\viewh16000\viewkind1\viewscale125
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f0\fs20 \cf0 % Javier Palomares javierp@stanford.edu 01/16/2013\
+% SUID 05572308\
+\
+% Matlab plotting basics\
+t = 0:.1:10;\
+w = exp(-t);\
+x = t.*exp(-t);\
+y = exp(-t) + t.*exp(-t);\
+plot(t,w)\
+grid on;\
+xlabel('t (sec)');\
+ylabel('w (volts)');\
+title('Sample waveform w vs. time');\
+print(figure,\'92graph1\'92);\
+\
+\
+
+\f1\fs24 {{\NeXTGraphic w.jpg \width2220 \height2880
+}}
+\f0\fs20 \
+plot(t,w,t,x,t,y);\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+\cf0 xlabel('t (sec)');\
+ylabel('w,x,y (volts)');\
+title('Sample waveforms w,x, and y vs time');\
+print(figure,\'92graph2\'92)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic wxy.jpg \width2380 \height3080
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f0\fs20 \cf0 \
+\
+\
+% Task 1\
+% Part A\
+t = -5:.0:5;\
+x =  exp(-t.*t) .* cos(2 * pi * t);\
+plot(t,x);\
+xlabel('t (sec)');\
+ylabel('x(t) (volts)');\
+title('sample waveform x vs time');\
+print(figure,\'92graph3\'92)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic x.jpg \width2820 \height3640
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f0\fs20 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+\cf0 % Part B\
+t = 0:.001:1;\
+A = 3;\
+B = 4;\
+x = cos(2 * pi * A .* t);\
+y = sin(2 * pi * B .* t);\
+plot(x,y);\
+title('Lissajous curve with A = 3, B = 4');\
+print(figure(1),'lissajouscurve');\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic lissajouscurve.jpg \width2420 \height3140
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f0\fs20 \cf0 \
+\
+A = 19;\
+B = 20;\
+x = cos(2 * pi * A .* t);\
+y = sin(2 * pi * B .* t);\
+xlabel('t');\
+ylabel('x and y');\
+title('Lissajous curve with A = 19, B = 20');\
+print(figure(1),'lissajouscurve2');\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic lissajouscurve2.jpg \width2780 \height3580
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f0\fs20 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+\cf0 %Task 2\
+\
+t =[1:length(d)] * dt;\
+plot(t(1:8:end),d(1:8:end));\
+xlabel('Time,s');\
+ylabel('Amplitude');\
+title('Guitar note');\
+subplot(211);\
+print(figure(1),'guitarnote')\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic guitarnote_full.jpg \width2680 \height3460
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f0\fs20 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+\cf0 ls = length(d);\
+% Note starts approximately at .45 seconds.\
+ns = round(.45/dt);\
+% at t = .45 the absolute peak is .98 and at t = 2.25 the amplitude drops to .15\
+% Then we have an system of equations to solve:\
+% .98 = a * exp(sigma * .45)\
+% and .15 = a * exp(sigma * 2.25)\
+% this allows us to solve for sigma and a\
+sigma = log(.15/.98)/(2.25 - .45);\
+a = .98 /exp(.45 * sigma);\
+ld = ls;\
+% Then the delay waveform is\
+de = [zeros(1,ns) a * exp(sigma * t(ns + 1 : ld))];\
+subplot(211)\
+plot(t,abs(d),t,de);\
+xlabel('Time (s)');\
+ylabel('Amplitude');\
+print(figure(1),'Delayed_waveform_guitar')\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic Delayed_waveform_guitar.jpg \width2680 \height3460
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f0\fs20 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+\cf0 n1 = 1 * fs;\
+n2 = round((1+ 1/16) * fs);\
+ds = d (n1:n2);\
+lds = length(ds);\
+dt = (1/16)/lds;\
+\
+time = 2 : dt : (2+ 1/16) - dt;\
+plot(time,ds)\
+xlabel('time (sec)');\
+ylabel('Amplitude')\
+\
+title('Guitar note around 2 sec');\
+print(figure(1),'guitarnote2sec');\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic guitarnote2sec.jpg \width2700 \height3500
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f0\fs20 \cf0 \
+\
+\
+% 34 cycles in the graph\
+np = 34;\
+% The frequency is the sampling rate / number of cycle\
+fp = fs/np;\
+% and the period is one over the frequency\
+tp = 1/fp;\
+% Middle C\
+fp =\
+\
+  259.4118\
+\
+plot(ds(1:lds-np) - ds(1+np:lds));\
+ylabel('Amplitude')\
+print(figure(1),'zeroguitar')\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic zeroguitar.jpg \width2580 \height3340
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f0\fs20 \cf0 \
+\
+% period\
+T = dt * np\
+\
+T =\
+\
+    0.0038\
+% part d\
+dsim = de.* sin(2*pi * fp * t);\
+sound(dsim,fs)\
+% They are the same note and fade at the same rate\
+plot(t,dsim)\
+xlabel('time (sec)');\
+ylabel('Amplitude');\
+title('Simulated note');\
+print(figure(1),'simnote');\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\pardirnatural
+
+\f1\fs24 \cf0 {{\NeXTGraphic simnote.jpg \width2100 \height2720
+}}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\fi722\sl288\slmult1\pardirnatural
+
+\f0\fs20 \cf0 \
+{\*\beandata789c9d935d6f82301486aff157748db752d876b12d8851c1c4cc2099b86497153a65e32ba5cef1ef57444aeb66b68c1bda73fabe4f7b4e6b8d3ed3047c105ac6793684a66e4040b2308fe26c3b84eb6036b88323bb675d39cb69f0e2bba048e292017f3d59cca7000e101a17454210720207f88bf92a00dc0321d78300ee182b1e103a1c0e3aae57e9619ed60b4be4d3bc2094550b6e36e0023d6211e498c65dd90e8f4671c8ec9e66bd93caee631aee62bec242f594474b46f9666d6ff5482a128d45fa146f75f9e68d84ac14324c29ae07c2a09fed934492692d573b3984092e855e4e37f9e9acbf9e3b5d5eb3e28c912da1f6ad85dae1518854636fa5f39fec2cf6a6502e603aceb5ca5140a8f36ca16715f93ff7e64fdc2eda567ce28ebd27f6ead6f78d778ef1e866cf48f9dcf4dfdba71ba591d2490dd334ee0df5c03ff68b5c3a9fb8360e57711aa6958c92572c8f8552b2dfead9d0329c1289f70b4354a4736bbc585e887b2a8a56cf2704670e665830cece7cde24513053ad540756ded6e9e109b6501bf52759b43a0b1d5facddfb02aa1d4161}}
